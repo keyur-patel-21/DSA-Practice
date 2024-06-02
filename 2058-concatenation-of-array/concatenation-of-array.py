@@ -6,11 +6,9 @@ class Solution(object):
         """
         ans = []
 
-        for num in nums:
-            ans.append(num)
-
-        for num in nums:
-            ans.append(num)
+        for i in range(2):
+            for num in nums:
+                ans.append(num)
 
         return ans   
 
