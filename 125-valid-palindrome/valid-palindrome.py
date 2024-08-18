@@ -4,9 +4,20 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        temp = ""
-        for ch in s:
-            if ch.isalnum():
-                temp += ch.lower()
-        
-        return temp == temp[::-1]
+        l, r = 0, len(s) - 1
+
+        while l < r:
+            while l < r and not self.alphanumeric(s[l]):
+                l += 1
+            while l < r and not self.alphanumeric(s[r]):
+                r -= 1     
+            if s[l].lower() != s[r].lower():
+                return False
+            l+=1
+            r-=1
+
+        return True
+
+    def alphanumeric(self, c):
+        return (ord('A') <= ord(c) <= ord('Z') or
+        ord('a') <= ord(c) <= ord('z') or ord('0') <= ord(c) <= ord('9'))
