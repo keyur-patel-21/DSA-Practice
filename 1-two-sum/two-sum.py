@@ -9,6 +9,6 @@ class Solution(object):
 
         for i, num in enumerate(nums):
             if target-num in temp:
-                return [i, temp[target-num]]
+                return[i, temp[target-num]]
             else:
-                temp[num] = i
+                temp[num] = i 
