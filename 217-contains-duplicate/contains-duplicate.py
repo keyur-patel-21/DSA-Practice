@@ -11,6 +11,5 @@ class Solution(object):
                 return True
             else:
                 temp.add(num)
-            
+
         return False
-        
