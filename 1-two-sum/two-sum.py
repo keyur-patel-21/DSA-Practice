@@ -7,8 +7,8 @@ class Solution(object):
         """
         temp = {}
 
-        for i, num in enumerate(nums):
-            if target-num in temp:
-                return[i, temp[target-num]]
+        for i, n in enumerate(nums):
+            if target-n in temp:
+                return [i, temp[target-n]]
             else:
-                temp[num] = i 
+                temp[n] = i
