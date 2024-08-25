@@ -8,8 +8,8 @@ class Solution(object):
         stack = []
 
         for i, t in enumerate(temperatures):
-            while stack and t > stack[-1][0]:
-                stackT, stackI = stack.pop()
-                res[stackI] = (i - stackI)
-            stack.append([t, i])
+            while stack and t > stack[-1][-1]:
+                stackI, stackT = stack.pop()
+                res[stackI] = i - stackI
+            stack.append([i, t])
         return res
