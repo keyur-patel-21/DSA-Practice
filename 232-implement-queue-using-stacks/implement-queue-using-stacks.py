@@ -24,6 +24,7 @@ class MyQueue(object):
 
     def empty(self):
         return max(len(self.s1), len(self.s2)) == 0
+        
 
 
 # Your MyQueue object will be instantiated and called as such:
