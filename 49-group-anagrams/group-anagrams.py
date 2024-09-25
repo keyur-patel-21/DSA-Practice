@@ -11,4 +11,3 @@ class Solution(object):
             res[tuple(count)].append(s)
 
         return res.values()
-        
