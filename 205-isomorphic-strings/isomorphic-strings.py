@@ -9,7 +9,6 @@ class Solution(object):
                 return False
 
             mapST[c1] = c2
-            mapTS[c2] = c1
+            mapTS[c2] = c1  
 
-        return True
-        
+        return True      
