@@ -12,7 +12,9 @@ class Solution(object):
 
             c1, c2 = pattern[i], s[i]
 
-            if((c1 in mapPS and mapPS[c1] != c2) or (c2 in mapSP and mapSP[c2] != c1) or len(pattern) != len(s)):
+            if((c1 in mapPS and mapPS[c1] != c2) or 
+                (c2 in mapSP and mapSP[c2] != c1) or
+                len(pattern) != len(s)):
                 return False
 
             mapPS[c1] = c2
