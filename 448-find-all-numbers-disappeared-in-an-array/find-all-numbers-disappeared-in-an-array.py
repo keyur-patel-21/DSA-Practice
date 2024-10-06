@@ -7,6 +7,7 @@ class Solution(object):
         res = []
         for i, n in enumerate(nums):
             if n > 0:
-                res.append(i + 1)
+                res.append(i+1)
 
-        return res            
+        return res
+        
