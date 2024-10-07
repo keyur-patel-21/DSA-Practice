@@ -1,19 +1,17 @@
 class Solution(object):
     def searchMatrix(self, matrix, target):
-        m = len(matrix)
-        n = len(matrix[0])
+        rows = len(matrix) 
+        cols = len(matrix[0]) 
 
-        r, c = m - 1, 0
+        r, c = rows - 1, 0
 
-        while(r >= 0 and c < n):
-            if (matrix[r][c] == target):
+        while(r >= 0 and c < cols):
+            if matrix[r][c] == target:
                 return True
-            elif (matrix[r][c] > target):
-                r -= 1
-            else:
+            elif matrix[r][c] < target:
                 c += 1
-        
-        return False
+            else:
+                r -= 1
             
-
+        return False
         
