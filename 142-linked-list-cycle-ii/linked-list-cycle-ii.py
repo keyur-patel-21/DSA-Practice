@@ -6,6 +6,13 @@
 
 class Solution(object):
     def detectCycle(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if not head:
+            return None
+
         slow, fast = head, head
         flag = False
 
@@ -15,15 +22,20 @@ class Solution(object):
             if fast == slow:
                 flag = True
                 break
+
+
         if not flag:
             return None
-        if flag:
-            fast = head
-            while(fast != slow):
-                slow = slow.next
-                fast = fast.next
-            return slow
 
+        fast = head    
+
+        while (slow != fast):
+            slow = slow.next
+            fast = fast.next
         
+        return slow
+        
+            
+
 
         
