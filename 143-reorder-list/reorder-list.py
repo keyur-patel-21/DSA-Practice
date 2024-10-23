@@ -14,6 +14,7 @@ class Solution(object):
         second = slow.next
         slow.next = None
         prev = None
+
         while second:
             tmp = second.next
             second.next = prev
@@ -25,4 +26,7 @@ class Solution(object):
             tmp1, tmp2 = first.next, second.next
             first.next = second
             second.next = tmp1
-            first, second = tmp1, tmp2
+            first = tmp1
+            second = tmp2
+
+
