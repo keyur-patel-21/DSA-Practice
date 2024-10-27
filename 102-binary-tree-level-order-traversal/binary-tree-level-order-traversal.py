@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution(object):
     def levelOrder(self, root):
-        res= []
+        res = []
 
         q = collections.deque()
         q.append(root)
@@ -19,7 +19,8 @@ class Solution(object):
                     level.append(node.val)
                     q.append(node.left)
                     q.append(node.right)
+
             if level:
                 res.append(level)
-            
+        
         return res
