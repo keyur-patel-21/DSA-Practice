@@ -7,7 +7,6 @@ class MyHashSet(object):
 
     def __init__(self):
         self.set = [Node(0) for i in range(10**4)]
-        
 
     def add(self, key):
         index = key % len(self.set)
@@ -17,7 +16,6 @@ class MyHashSet(object):
                 return
             cur = cur.next
         cur.next = Node(key)
-
         
 
     def remove(self, key):
@@ -28,20 +26,17 @@ class MyHashSet(object):
                 cur.next = cur.next.next
                 return
             cur = cur.next
+        
 
     def contains(self, key):
         index = key % len(self.set)
         cur = self.set[index]
-
         while cur.next:
             if cur.next.key == key:
                 return True
             cur = cur.next
-        return False  
+        return False
 
-        
-        
-        
 
 
 # Your MyHashSet object will be instantiated and called as such:
