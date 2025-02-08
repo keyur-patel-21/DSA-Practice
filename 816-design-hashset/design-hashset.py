@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, key):
+    def __init__(self,key):
         self.key = key
         self.next = None
 
@@ -7,7 +7,6 @@ class MyHashSet(object):
 
     def __init__(self):
         self.set = [Node(0) for i in range(10**4)]
-        
 
     def add(self, key):
         cur = self.set[key % len(self.set)]
@@ -22,7 +21,7 @@ class MyHashSet(object):
         cur = self.set[key % len(self.set)]
         while cur.next:
             if cur.next.key == key:
-                cur.next = cur.next.next    
+                cur.next = cur.next.next
                 return
             cur = cur.next
         
@@ -34,6 +33,7 @@ class MyHashSet(object):
                 return True
             cur = cur.next
         return False
+        
 
 
 # Your MyHashSet object will be instantiated and called as such:
