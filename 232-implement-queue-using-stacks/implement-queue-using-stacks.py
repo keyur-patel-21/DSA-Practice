@@ -2,7 +2,7 @@ class MyQueue(object):
 
     def __init__(self):
         self.inStack = []
-        self.outStack= []
+        self.outStack = []
 
     def push(self, x):
         self.inStack.append(x)
