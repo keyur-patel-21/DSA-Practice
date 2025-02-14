@@ -1,14 +1,15 @@
 class Solution(object):
     def findMaxLength(self, nums):
         
-        if (not nums) or (len(nums) == 0) or (len(nums) == 1):
+        if ((not nums) or (len(nums) == 0) or (len(nums) == 1)):
             return 0
-
-        dict = {}
-        dict[0] = -1
+        
+        myDict = {}
 
         rSum = 0
         res = 0
+
+        myDict[0] = -1
 
         for i in range(len(nums)):
 
@@ -17,9 +18,9 @@ class Solution(object):
             else:
                 rSum += 1
 
-            if rSum in dict:
-                res = max(res, (i - dict[rSum]))
+            if rSum in myDict:
+                res = max(res, (i - myDict[rSum]))
             else:
-                dict[rSum] = i
+                myDict[rSum] = i
         
         return res
