@@ -1,7 +1,6 @@
 class Solution(object):
     def groupAnagrams(self, strs):
         
-
         res = defaultdict(list)
 
         for s in strs:
