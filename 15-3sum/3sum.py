@@ -1,25 +1,34 @@
 class Solution(object):
     def threeSum(self, nums):
-        res = []
+        n = len(nums)
         nums.sort()
+        res = []
 
-        for i, n in enumerate(nums):
-            if i > 0 and n == nums[i - 1]:
+        target = 0
+
+        for i in range(0, n-2):
+            if (i > 0 and nums[i] == nums[i -1]):  #condition to skip the same element
                 continue
-            if nums[i] > 0:
-                break
-            l, r = i + 1, len(nums) - 1
-            while l < r:
-                answer = n + nums[l] + nums[r]
-                if answer > 0:
-                    r -= 1
-                elif answer < 0:
-                    l += 1
-                else:
-                    res.append([n, nums[l], nums[r]])
-                    l += 1
-                    while nums[l] == nums[l - 1] and l < r:
-                        l += 1
+            if (nums[i] > 0):   #as we have sorted the array, we cant form a negative sum from other two elements  
+                break           # if first element is positive
 
-        return res 
-        
+            low = i +1
+            high = n - 1
+
+            while low < high:
+                curSum = nums[i] + nums[low] + nums[high]
+
+                if curSum == target:
+                    res.append([nums[i], nums[low], nums[high]])
+                    low += 1
+                    high -= 1
+                    while (low < high and nums[low] == nums[low-1]):
+                        low += 1
+                    while (low < high and nums[high] == nums[high+1]):
+                        high -= 1
+                elif curSum < target:
+                    low += 1
+                else:
+                    high -= 1
+            
+        return res
