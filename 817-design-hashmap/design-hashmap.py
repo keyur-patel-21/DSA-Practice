@@ -1,3 +1,22 @@
+# Approach:
+# - Implement a HashMap using separate chaining with linked lists.
+# - The HashMap consists of an array of size 10^3, where each index stores a dummy head node.
+# - Each bucket handles collisions using a linked list.
+# - `put()`: If the key exists, update its value; otherwise, insert a new node at the end.
+# - `get()`: Traverse the linked list in the corresponding bucket to find the key and return its value.
+# - `remove()`: Traverse the linked list, find the key, and remove it by adjusting the next pointer.
+
+# Time Complexity:
+# - `put()`: O(N) in the worst case (when all elements hash to the same bucket), but O(1) on average.
+# - `get()`: O(N) in the worst case, O(1) on average.
+# - `remove()`: O(N) in the worst case, O(1) on average.
+# - Here, N is the number of elements in a particular bucket.
+
+# Space Complexity:
+# - O(K), where K is the number of unique keys stored in the HashMap.
+# - The storage array takes O(10^3) space, but actual space usage depends on inserted elements.
+
+
 class Node:
     def __init__(self, key, val):
         self.key = key
