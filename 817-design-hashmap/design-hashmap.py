@@ -7,7 +7,7 @@ class Node:
 class MyHashMap(object):
 
     def __init__(self):
-        self.map = [Node(0, 0) for i in range(1000)]
+        self.map = [Node(0,0) for i in range(10**4)]
         
 
     def put(self, key, value):
@@ -39,7 +39,6 @@ class MyHashMap(object):
                 cur.next = cur.next.next
                 return
             cur = cur.next
-        
         
 
 
