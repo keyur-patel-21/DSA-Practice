@@ -1,38 +1,47 @@
-class Node:
-    def __init__(self, key):
-        self.key = key
-        self.next = None
-
 class MyHashSet(object):
 
     def __init__(self):
-        self.set = [Node(0) for i in range(10**4)]
+        self.primaryBuckets = 1000
+        self.secondaryBuckets = 1000
+        self.storage = [None] * self.primaryBuckets
+
+    def getPrimaryHash(self, key):
+        return key % self.primaryBuckets
+
+    def getSecondaryHash(self, key):
+        return key // self.secondaryBuckets
 
     def add(self, key):
-        cur = self.set[key % len(self.set)]
-        while cur.next:
-            if cur.next.key == key:
-                return
-            cur = cur.next
-        cur.next = Node(key)        
+        primaryHash = self.getPrimaryHash(key)
+        if self.storage[primaryHash] == None:
+            if primaryHash == 0:
+                self.storage[primaryHash] = [None] * (self.secondaryBuckets + 1)
+            else:
+                self.storage[primaryHash] = [None] * (self.secondaryBuckets)
+        secondaryHash = self.getSecondaryHash(key)
+        self.storage[primaryHash][secondaryHash] = True
+        
 
     def remove(self, key):
-        cur = self.set[key % len(self.set)]
-        while cur.next:
-            if cur.next.key == key:
-                cur.next = cur.next.next
-                return
-            cur = cur.next
-    
+        primaryHash = self.getPrimaryHash(key)
+        if self.storage[primaryHash] == None:
+            return
+        secondaryHash = self.getSecondaryHash(key)
+        if self.storage[primaryHash][secondaryHash] == None:
+            return
+        self.storage[primaryHash][secondaryHash] = False
         
 
     def contains(self, key):
-        cur = self.set[key % len(self.set)]
-        while cur.next:
-            if cur.next.key == key:
-                return True
-            cur = cur.next
-        return False 
+        primaryHash = self.getPrimaryHash(key)
+
+        if self.storage[primaryHash] == None:
+            return False
+
+        secondaryHash = self.getSecondaryHash(key)
+        return self.storage[primaryHash][secondaryHash] == True
+        
+        
         
 
 
