@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self,key):
+    def __init__(self, key):
         self.key = key
         self.next = None
 
@@ -14,8 +14,7 @@ class MyHashSet(object):
             if cur.next.key == key:
                 return
             cur = cur.next
-        cur.next = Node(key)
-        
+        cur.next = Node(key)        
 
     def remove(self, key):
         cur = self.set[key % len(self.set)]
@@ -24,6 +23,7 @@ class MyHashSet(object):
                 cur.next = cur.next.next
                 return
             cur = cur.next
+    
         
 
     def contains(self, key):
@@ -32,7 +32,7 @@ class MyHashSet(object):
             if cur.next.key == key:
                 return True
             cur = cur.next
-        return False
+        return False 
         
 
 
