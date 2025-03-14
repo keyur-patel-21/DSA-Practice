@@ -26,8 +26,8 @@ class MyQueue(object):
     def empty(self):
         if  (not self.stack1 and not self.stack2):
             return True
-        else:
-            return False
+        
+        return False
 
         
 
