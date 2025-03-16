@@ -1,33 +1,32 @@
 class Solution(object):
     def searchMatrix(self, matrix, target):
-        no_of_rows, no_of_cols = len(matrix), len(matrix[0])
+        rows, cols = len(matrix), len(matrix[0])
 
-        top, bottom = 0, no_of_rows - 1
+        top, bottom = 0, rows - 1
 
         while top <= bottom:
-            mid_row = (top+bottom) // 2
+            mid = (top + bottom) // 2
 
-            if target < matrix[mid_row][0]:
-                bottom = mid_row - 1
-            elif target > matrix[mid_row][-1]:
-                top = mid_row + 1
+            if target < matrix[mid][0]:
+                bottom = mid - 1
+            elif target > matrix[mid][cols - 1]:
+                top = mid + 1
             else:
+                midrow = mid  # This is the correct row where target might exist
                 break
-        
-        if not (top <= bottom):
-            return False
+        else:
+            return False  # If we exit the loop, the target is not in any row range
 
-        row = (top+bottom) // 2
-        l, r = 0, no_of_cols - 1
+        l, r = 0, cols - 1
 
         while l <= r:
-            mid = (l + r) // 2
+            m = (l + r) // 2
 
-            if target == matrix[row][mid]:
+            if matrix[midrow][m] == target:
                 return True
-            elif target <= matrix[row][mid]:
-                r = mid - 1
+            elif target < matrix[midrow][m]:
+                r = m - 1
             else:
-                l = mid + 1 
+                l = m + 1
+            
         return False
-        
