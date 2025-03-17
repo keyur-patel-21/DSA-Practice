@@ -3,25 +3,26 @@ class Solution(object):
         
         first = self.binarySearch(nums, target, True)
         last = self.binarySearch(nums, target, False)
-
+    
         return [first, last]
+        
     def binarySearch(self, nums, target, isFirst):
 
-        l, r = 0, len(nums) - 1
-        ans = -1
-        
-        while  l <= r:
-            mid = (l+r) // 2
+        l, r = 0, len(nums)-1
+        ans = - 1
 
-            if nums[mid] == target:
-                ans = mid
+        while (l <= r ):
+            m = (l + r) // 2
+
+            if target == nums[m]:
+                ans = m
                 if isFirst:
-                    r = mid - 1
+                    r = m - 1
                 else:
-                    l = mid + 1
-            elif target < nums[mid]:
-                r = mid - 1
+                    l = m + 1
+            elif target < nums[m]:
+                r = m - 1
             else:
-                l = mid + 1
-        
+                l = m + 1
+
         return ans
