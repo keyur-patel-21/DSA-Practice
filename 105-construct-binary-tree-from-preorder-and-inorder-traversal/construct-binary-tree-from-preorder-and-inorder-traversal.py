@@ -5,16 +5,26 @@
 #         self.left = left
 #         self.right = right
 class Solution(object):
+    def __init__(self):
+        self.idx = 0
+        self.inorderMap = {}
+
     def buildTree(self, preorder, inorder):
-        
-        if not preorder or not inorder:
+        self.inorderMap = {n:i for i, n in enumerate(inorder)}
+        return self.helper(preorder, 0, len(inorder)-1)
+
+    def helper(self, preorder, start, end):
+        if start>end:
             return None
 
-        root = TreeNode(preorder[0])
+        root = TreeNode(preorder[self.idx])
+        rootIdx = self.inorderMap[preorder[self.idx]]
+        self.idx += 1
 
-        rootIdx = inorder.index(preorder[0])
-
-        root.left = self.buildTree(preorder[1:rootIdx+1], inorder[:rootIdx])
-        root.right = self.buildTree(preorder[rootIdx+1:], inorder[rootIdx+1:])
+        root.left = self.helper(preorder, start, rootIdx - 1)
+        root.right = self.helper(preorder, rootIdx+1, end)
 
         return root
+        
+
+
