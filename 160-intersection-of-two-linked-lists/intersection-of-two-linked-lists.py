@@ -6,29 +6,14 @@
 
 class Solution(object):
     def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
         curA, curB = headA, headB
-        countA, countB = 0, 0
-
-        while curA:
-            curA = curA.next
-            countA += 1
-
-        while curB:
-            curB = curB.next
-            countB += 1
-        
-        curA, curB = headA, headB
-
-        while countA > countB:
-            curA = curA.next
-            countA -= 1
-
-        while countB > countA:
-            curB = curB.next
-            countB -= 1
 
         while curA != curB:
-            curA = curA.next
-            curB = curB.next
+            curA = curA.next if curA else headB
+            curB = curB.next if curB else headA
 
         return curA
