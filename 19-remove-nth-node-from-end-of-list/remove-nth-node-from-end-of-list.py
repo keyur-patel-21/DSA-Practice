@@ -1,27 +1,35 @@
-# Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+# Approach:
+# 1. Create a dummy node pointing to the head of the linked list. This helps in edge cases like removing the first node.
+# 2. Use two pointers, `slow` and `fast`, both starting from the dummy node.
+# 3. Move the `fast` pointer `n+1` steps ahead to maintain a gap of `n` nodes between `slow` and `fast`.
+# 4. Move both `slow` and `fast` pointers one step at a time until `fast` reaches the end.
+# 5. At this point, `slow` is just before the node to be removed. Update `slow.next` to skip the target node.
+# 6. Return `dummy.next`, which points to the modified head of the list.
+
+# Time Complexity (TC): O(L) - We traverse the linked list at most twice (once to move `fast`, once to find `slow`).
+# Space Complexity (SC): O(1) - We use only a constant amount of extra space.
+
 class Solution(object):
     def removeNthFromEnd(self, head, n):
         """
-        :type head: ListNode
+        :type head: Optional[ListNode]
         :type n: int
-        :rtype: ListNode
+        :rtype: Optional[ListNode]
         """
-        dummy = ListNode(0, head)
+        dummy = ListNode(-1)
         dummy.next = head
-        l, r = dummy, head
 
-        while n > 0:
-            r = r.next
-            n -= 1
+        slow, fast = dummy, dummy
+        count = 0
 
-        while r:
-            r = r.next
-            l = l.next
+        while count <= n:
+            fast = fast.next
+            count += 1
 
-        l.next = l.next.next
+        while fast:
+            slow = slow.next
+            fast = fast.next
+
+        slow.next = slow.next.next
+    
         return dummy.next
-        
