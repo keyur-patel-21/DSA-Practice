@@ -5,28 +5,32 @@
 #         self.next = next
 class Solution(object):
     def reorderList(self, head):
-        slow, fast = head, head.next
+        
+        slow, fast = head, head
 
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
 
-        second = slow.next
+        second  = slow.next
         slow.next = None
-        prev = None
 
-        while second:
-            tmp = second.next
-            second.next = prev
-            prev = second
-            second = tmp
+        pre = None
+        cur = second
+        while cur:
+            tmp = cur.next
+            cur.next = pre
+            pre = cur
+            cur = tmp
+        
+        slow = pre
+        fast = head
 
-        first, second = head, prev
-        while second:
-            tmp1, tmp2 = first.next, second.next
-            first.next = second
-            second.next = tmp1
-            first = tmp1
-            second = tmp2
+        while slow:
+            tmp1, tmp2 = fast.next, slow.next
+            fast.next = slow
+            slow.next = tmp1
+            fast = tmp1
+            slow = tmp2
 
-
+        
