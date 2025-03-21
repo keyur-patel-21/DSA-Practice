@@ -15,17 +15,18 @@ class BSTIterator(object):
 
     def next(self):
         res = self.stack.pop()
-        cur = res.right
-        while cur:
-            self.stack.append(cur)
-            cur = cur.left
+        if res.right:
+            cur = res.right
+            while cur:
+                self.stack.append(cur)
+                cur = cur.left
 
         return res.val
-        
-        
+                 
 
     def hasNext(self):
-        return self.stack != []
+        return len(self.stack) != 0
+        
 
 
 # Your BSTIterator object will be instantiated and called as such:
