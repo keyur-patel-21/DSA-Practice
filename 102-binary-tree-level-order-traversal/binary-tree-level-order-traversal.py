@@ -6,8 +6,8 @@
 #         self.right = right
 class Solution(object):
     def levelOrder(self, root):
+        
         res = []
-
         q = collections.deque()
         q.append(root)
 
@@ -16,11 +16,12 @@ class Solution(object):
             for i in range(len(q)):
                 node = q.popleft()
                 if node:
-                    level.append(node.val)
                     q.append(node.left)
                     q.append(node.right)
+                    level.append(node.val)
 
             if level:
                 res.append(level)
-        
+
         return res
+        
