@@ -6,7 +6,7 @@ class Node:
 class MyHashSet(object):
 
     def __init__(self):
-        self.set = [Node(0) for _ in range(10**4)]
+        self.set = [Node(0) for _ in range(10**3)]
 
     def add(self, key):
         idx = key % len(self.set)
