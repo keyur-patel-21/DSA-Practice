@@ -7,7 +7,7 @@ class Node:
 class MyHashMap(object):
 
     def __init__(self):
-        self.map = [Node(0,0) for _ in range(10**4)]
+        self.map = [Node(0,0) for _ in range(10**3)]
 
     def put(self, key, value):
         idx = key % len(self.map)
