@@ -2,24 +2,20 @@ class Solution(object):
     def combinationSum(self, candidates, target):
         result = []
 
-        def helper(candidates, target, i, path):
-
+        def helper(candidates, p, target, path):
             # base
+            if target < 0 or p == len(candidates):
+                return
+
             if target == 0:
                 result.append(path[:])
                 return 
-            
-            if target < 0 or i == len(candidates):
-                return
 
-            # no choose
-            helper(candidates, target, i+1, path)
+            # for loop
+            for i in range(p, len(candidates)):
+                path.append(candidates[i])
+                helper(candidates, i, target-candidates[i], path)
+                path.pop()
 
-            # choose
-            path.append(candidates[i])
-            helper(candidates, target-candidates[i], i, path)
-            path.pop()
-
-        
-        helper(candidates, target, 0, [])
+        helper(candidates, 0, target, [])
         return result
