@@ -27,7 +27,8 @@ class Solution(object):
         q.append(id)
 
         while q:
-            for i in range(len(q)):
+            level = len(q)
+            for i in range(level):
                 curId = q.popleft()
                 curemp = empDet[curId]
                 result += curemp[0]
