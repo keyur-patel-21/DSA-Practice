@@ -1,29 +1,25 @@
 class Solution(object):
     def floodFill(self, image, sr, sc, color):
-        initial_colour = image[sr][sc]
-        if initial_colour == color:
+        initialColor = image[sr][sc]
+
+        if initialColor == color:
             return image
+        dirs = [[0,1], [0,-1], [-1,0], [1,0]]
+        def dfs(image, sr, sc, color, initialColor, dirs):
+            # base
+            image[sr][sc] = color
+
+            # logic
+            for dire in dirs:
+                nr = sr + dire[0]
+                nc = sc + dire[1]
+                if 0<=nr<len(image) and 0<=nc<len(image[0]):
+                    if image[nr][nc] == initialColor:
+                        dfs(image, nr, nc, color, initialColor, dirs)
+
             
-        image[sr][sc] = color
 
-        q = collections.deque()
-        q.append((sr, sc))
-
-        dirs = [[0,1], [1,0], [0,-1], [-1,0]]
-
-        while q:
-            for i in range(len(q)):
-                cur = q.popleft()
-                for dire in dirs:
-                    nr = cur[0] + dire[0]
-                    nc = cur[1] + dire[1]
-                    if 0<= nr <len(image) and 0<= nc <len(image[0]):
-                        if image[nr][nc] == initial_colour:
-                            image[nr][nc] = color
-                            q.append((nr, nc))
-
-
+        dfs(image, sr, sc, color, initialColor, dirs)
         return image
-
 
         
