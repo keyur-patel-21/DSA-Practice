@@ -1,48 +1,46 @@
 class Node:
-    def __init__(self, key, value):
+    def __init__(self, key, val):
         self.key = key
-        self.value = value
+        self.val = val
         self.next = None
 
 class MyHashMap(object):
 
     def __init__(self):
-        self.map = [Node(0,0) for i in range(10*3)]
+        self.map = [Node(None, None) for _ in range(10**3)]
         
 
     def put(self, key, value):
         idx = key % len(self.map)
-        cur = self.map[idx]
+        curr = self.map[idx]
 
-        while cur.next:
-            if cur.next.key == key:
-                cur.next.value = value
+        while curr.next:
+            if curr.next.key == key:
+                curr.next.val = value
                 return
-            cur = cur.next
-        cur.next = Node(key, value)
-
+            curr = curr.next
+        curr.next = Node(key, value)
+        
     def get(self, key):
         idx = key % len(self.map)
-        cur = self.map[idx]
+        curr = self.map[idx]
 
-        while cur.next:
-            if cur.next.key == key:
-                return cur.next.value
-            cur = cur.next
-
-        return -1
-        
+        while curr.next:
+            if curr.next.key == key:
+                return curr.next.val
+            curr = curr.next
+        return -1        
 
     def remove(self, key):
         idx = key % len(self.map)
-        cur = self.map[idx]
+        curr = self.map[idx]
 
-        while cur.next:
-            if cur.next.key == key:
-                cur.next = cur.next.next
+        while curr.next:
+            if curr.next.key == key:
+                curr.next = curr.next.next
                 return
-            cur = cur.next
-        
+            curr = curr.next
+        return
         
 
 
