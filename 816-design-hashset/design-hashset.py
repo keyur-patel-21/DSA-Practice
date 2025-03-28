@@ -7,14 +7,15 @@ class MyHashSet(object):
 
     def __init__(self):
         self.set = [Node(0) for _ in range(10**3)]
+        
 
     def add(self, key):
         idx = key % len(self.set)
         cur = self.set[idx]
-
+        
         while cur.next:
             if cur.next.key == key:
-                return 
+                return
             cur = cur.next
         cur.next = Node(key)
         
@@ -22,19 +23,20 @@ class MyHashSet(object):
     def remove(self, key):
         idx = key % len(self.set)
         cur = self.set[idx]
-
+        
         while cur.next:
             if cur.next.key == key:
                 cur.next = cur.next.next
                 return
             cur = cur.next
-        return
-
+        
+        
+        
 
     def contains(self, key):
         idx = key % len(self.set)
         cur = self.set[idx]
-
+        
         while cur.next:
             if cur.next.key == key:
                 return True
