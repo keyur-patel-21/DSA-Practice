@@ -2,22 +2,17 @@ class Solution(object):
     def subsets(self, nums):
         result = []
 
-        def helper(i, path, nums):
+        def helper(pivot, path):
+
             # base
-            if i == len(nums):
-                result.append(path[:])
-                return
+            result.append(path[:])
 
+            # logic
+            for i in range(pivot, len(nums)):
+                path.append(nums[i])
+                helper(i+1, path)
+                path.pop()
 
-
-            # No choose
-            helper(i+1, path, nums)
-
-
-            # choose
-            path.append(nums[i])
-            helper(i+1, path, nums)
-            path.pop()
-
-        helper(0, [], nums)
+        helper(0, [])
         return result
+        
