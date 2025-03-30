@@ -21,7 +21,15 @@ class Solution(object):
 
             
         def isPalindrome(subString):
-            return subString == subString[::-1]
+            l, r = 0, len(subString)-1
+
+            while l<=r:
+                if subString[l] != subString[r]:
+                    return False
+                l += 1
+                r -= 1
+
+            return True
 
         helper(0, [])
         
