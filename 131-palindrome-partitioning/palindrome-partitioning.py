@@ -8,6 +8,7 @@ class Solution(object):
             # base
             if pivot == len(s):
                 res.append(path[:]) 
+                return
 
 
             # logic
