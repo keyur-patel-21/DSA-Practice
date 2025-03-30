@@ -1,18 +1,9 @@
 class Solution(object):
     def subsets(self, nums):
-        result = []
+        result = [[]]  # Start with an empty subset
 
-        def helper(pivot, path):
+        for num in nums:  # Iterate through each number
+            new_subsets = [subset + [num] for subset in result]  # Create new subsets
+            result.extend(new_subsets)  # Add them to the result
 
-            # base
-            result.append(path[:])
-
-            # logic
-            for i in range(pivot, len(nums)):
-                path.append(nums[i])
-                helper(i+1, path)
-                path.pop()
-
-        helper(0, [])
         return result
-        
