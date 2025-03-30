@@ -3,21 +3,27 @@ class Solution(object):
         
         res = []
 
-        def helper(pivot, path):
+        def helper(pivot, i, sum, path):
 
-            # base
-            if pivot == len(s):
-                res.append(path[:]) 
+            #base case
+            if i == len(s):
+                if sum==len(s):
+                    res.append(path[:])
                 return
 
 
             # logic
-            for i in range(pivot, len(s)):
-                subString = s[pivot:i+1]
-                if isPalindrome(subString):
-                    path.append(subString)
-                    helper(i+1, path)
-                    path.pop()
+
+            # No choose
+            helper(pivot, i+1, sum, path)
+
+            # choose
+            sub = s[pivot:i+1]
+            if isPalindrome(sub):
+                path.append(sub)
+                helper(i+1, i+1, sum+len(sub), path)
+                path.pop()
+
 
             
         def isPalindrome(subString):
@@ -31,7 +37,7 @@ class Solution(object):
 
             return True
 
-        helper(0, [])
+        helper(0, 0, 0, [])
         
         return res
 
