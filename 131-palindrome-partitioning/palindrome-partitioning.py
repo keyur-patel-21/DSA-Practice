@@ -3,11 +3,11 @@ class Solution(object):
         
         res = []
 
-        def helper(pivot, i, sum, path):
+        def helper(pivot, i, path):
 
             #base case
             if i == len(s):
-                if sum==len(s):
+                if pivot==len(s):
                     res.append(path[:])
                 return
 
@@ -15,13 +15,13 @@ class Solution(object):
             # logic
 
             # No choose
-            helper(pivot, i+1, sum, path)
+            helper(pivot, i+1, path)
 
             # choose
             sub = s[pivot:i+1]
             if isPalindrome(sub):
                 path.append(sub)
-                helper(i+1, i+1, sum+len(sub), path)
+                helper(i+1, i+1, path)
                 path.pop()
 
 
@@ -37,7 +37,7 @@ class Solution(object):
 
             return True
 
-        helper(0, 0, 0, [])
+        helper(0, 0, [])
         
         return res
 
