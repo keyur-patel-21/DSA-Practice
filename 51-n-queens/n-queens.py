@@ -1,10 +1,10 @@
 class Solution(object):
     def solveNQueens(self, n):
-        result = []
+        result  = []
         matrix = [[None for _ in range(n)] for _ in range(n)]
 
         def helper(i):
-            #base
+            # base
             if i == n:
                 path = []
                 for r in matrix:
@@ -26,23 +26,20 @@ class Solution(object):
                     helper(i+1)
                     matrix[i][j] = None
 
-        def isSafe(i , j):
-            r = i
-            c = j
+        def isSafe(i, j):
+            r, c = i, j
 
             while r>=0:
                 if matrix[r][c]:
                     return False
                 r -= 1
-
-            r, c = i, j                
+            r, c = i, j
 
             while r>=0 and c>=0:
                 if matrix[r][c]:
                     return False
                 r -= 1
                 c -= 1
-
             r, c = i, j
 
             while r>=0 and c<n:
@@ -50,12 +47,11 @@ class Solution(object):
                     return False
                 r -= 1
                 c += 1
-
-            r, c = i, j
             
             return True
 
 
-
         helper(0)
         return result
+
+        
