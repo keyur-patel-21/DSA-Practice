@@ -10,7 +10,7 @@ class Solution(object):
 
             # logic
             for i in range(pivot, len(num)):
-                if num[pivot] == "0" and pivot != i:
+                if num[pivot] == "0" and pivot != i:        #edge case. EX: 105
                     return
                     
                 currNum = int(num[pivot:i+1])
