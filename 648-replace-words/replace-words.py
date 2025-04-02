@@ -1,8 +1,8 @@
 class Solution(object):
     class TrieNode:
-        def __init__(self):
-            self.isEnd = False
-            self.children = [None] * 26
+            def __init__(self):
+                self.isEnd = False
+                self.children = [None] * 26
 
     def replaceWords(self, dictionary, sentence):
         root = self.TrieNode()
@@ -12,7 +12,7 @@ class Solution(object):
             for c in word:
                 if curr.children[ord(c) - ord("a")] == None:
                     curr.children[ord(c) - ord("a")] = self.TrieNode()
-                curr = curr.children[ord(c) - ord("a")]
+                curr  = curr.children[ord(c) - ord("a")]
             curr.isEnd = True
 
         for word in dictionary:
@@ -30,20 +30,13 @@ class Solution(object):
                     break
                 curr = curr.children[ord(c) - ord("a")]
                 shortest += c
-
-            if curr.isEnd == True:
+            
+            if curr.isEnd:
                 return shortest
             return word
 
-
         for word in sen_words:
             result.append(getShortest(word))
-
+        
         return " ".join(result)
 
-         
-
-        
-
-        
-        
