@@ -1,17 +1,14 @@
 class Solution(object):
     def lengthOfLongestSubstring(self, s):
         slow = 0
-        memory = set()
+        memory = {}
         length = 0
 
         for i in range(len(s)):
             if s[i] in memory:
-                while s[slow] != s[i]:
-                    memory.remove(s[slow])
-                    slow += 1
-                slow += 1
+                slow = max(slow, memory[s[i]]+1)
 
-            memory.add(s[i]) 
+            memory[s[i]] = i 
             length = max(length, (i-slow+1))
 
         return length
