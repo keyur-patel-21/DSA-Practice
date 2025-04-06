@@ -5,10 +5,11 @@
 #         self.next = next
 class Solution(object):
     def mergeKLists(self, lists):
-        while not lists or len(lists) == 0:
+        if not lists or len(lists) == 0:
             return None
 
         while len(lists) > 1:
+
             mergedList = []
 
             for i in range(0, len(lists), 2):
@@ -16,6 +17,7 @@ class Solution(object):
                 l2 = lists[i+1] if (i+1) < len(lists) else None
 
                 mergedList.append(self.mergeTwo(l1, l2))
+
             lists = mergedList
         return lists[0]
 
@@ -27,7 +29,7 @@ class Solution(object):
         while l1 and l2:
             if l1.val < l2.val:
                 tail.next = l1
-                l1= l1.next
+                l1 = l1.next
             else:
                 tail.next = l2
                 l2 = l2.next
@@ -37,6 +39,7 @@ class Solution(object):
             tail.next = l1
         if l2:
             tail.next = l2
+
         return dummy.next
 
 
