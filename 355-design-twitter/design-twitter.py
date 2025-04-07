@@ -29,10 +29,6 @@ class Twitter(object):
 
         return res
 
-
-
-        
-
     def follow(self, followerId, followeeId):
         self.followMap[followerId].add(followeeId)
         
