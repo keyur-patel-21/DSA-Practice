@@ -14,8 +14,6 @@ class Solution(object):
             r -= 1
     
     def swap(self, nums, l, r):
-        temp = nums[l]
-        nums[l] = nums[r]
-        nums[r] = temp
+        nums[l], nums[r] = nums[r], nums[l]
 
         
