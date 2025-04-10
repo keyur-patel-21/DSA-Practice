@@ -6,20 +6,25 @@ class Solution(object):
         if n1 > n2:
             return self.intersect(nums2, nums1)
 
-        freqMap = {}
+        nums1.sort()
+        nums2.sort()
 
-        for ele in nums1:
-            if ele in freqMap:
-                freqMap[ele] += 1
-            else:
-                freqMap[ele] = 1
-
+        p1, p2 = 0, 0
         result = []
 
-        for ele in nums2:
-            if ele in freqMap and freqMap[ele] > 0:
-                freqMap[ele] -= 1
-                result.append(ele)
+        while p1 < n1 and p2 < n2:
+            if nums1[p1] == nums2[p2]:
+                result.append(nums1[p1])
+                p1 += 1
+                p2 += 1
+            elif nums1[p1] < nums2[p2]:
+                p1 += 1
+            else:
+                p2 += 1
 
         return result
+
+
+
+
         
