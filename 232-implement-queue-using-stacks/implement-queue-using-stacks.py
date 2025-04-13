@@ -1,33 +1,37 @@
 class MyQueue(object):
 
     def __init__(self):
-        self.inStack = []
-        self.outStack = []
+        self.nStack = []
+        self.qStack = [] 
         
 
     def push(self, x):
-        self.inStack.append(x)
+        self.nStack.append(x)
         
 
     def pop(self):
-        if not self.outStack:
-            while self.inStack:
-                self.outStack.append(self.inStack.pop())
-        return self.outStack.pop()
+        if self.qStack:
+            return self.qStack.pop()
+        else:
+            while self.nStack:
+                self.qStack.append(self.nStack.pop())
+            return self.qStack.pop()
         
 
     def peek(self):
-        if not self.outStack:
-            while self.inStack:
-                self.outStack.append(self.inStack.pop())
-        return self.outStack[-1]
+        if self.qStack:
+            return self.qStack[-1]
+        else:
+            while self.nStack:
+                self.qStack.append(self.nStack.pop())
+            return self.qStack[-1]
         
 
     def empty(self):
-        if len(self.inStack) == 0 and len(self.outStack) == 0:
+        if len(self.qStack) == 0 and len(self.nStack) == 0:
             return True
         else:
-            return False
+            return False 
         
 
 
