@@ -7,19 +7,18 @@
 class Solution(object):
     def kthSmallest(self, root, k):
         stack = []
-        curr = root
         count = 0
-        
-        while curr or stack:
-            while curr:
-                stack.append(curr)
-                curr = curr.left
 
-            curr = stack.pop()
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
+            
+            root = stack.pop()
             count += 1
 
             if count == k:
-                return curr.val
-            curr = curr.right
+                return root.val
 
+            root = root.right
         
