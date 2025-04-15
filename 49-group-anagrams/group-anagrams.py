@@ -1,15 +1,19 @@
 class Solution(object):
     def groupAnagrams(self, strs):
-        
-        res = defaultdict(list)
+        memory = {}
 
-        for s in strs:
-            count = [0] * 26
+        for word in strs:
+            value = [0] * 26
+            for ch in word:
+                value[ord(ch) - ord("a")] += 1
 
-            for c in s:
-                count[ord(c) - ord("a")] += 1
+            key = tuple(value)
 
-            res[tuple(count)].append(s)
+            if key in memory:
+                memory[key].append(word)
+            else:
+                memory[key] = [word]
 
-        return res.values()
+        return memory.values()
+
         
