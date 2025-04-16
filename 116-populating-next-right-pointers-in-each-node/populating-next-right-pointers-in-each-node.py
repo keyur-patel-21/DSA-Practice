@@ -10,23 +10,24 @@ class Node(object):
 
 class Solution(object):
     def connect(self, root):
-
+        
         if not root:
             return None
 
-        q = collections.deque()
-        q.append(root)
+        level = root
 
-        while q:
-            level = len(q)
-            for i in range(level):
-                curr = q.popleft()
-                if i != level - 1:
-                    curr.next = q[0]
-                if curr.left:
-                    q.append(curr.left)
-                    q.append(curr.right)
+        while level.left:
+            curr = level
+            while curr:
+                curr.left.next = curr.right
 
+                if curr.next:
+                    curr.right.next = curr.next.left
+                
+                curr = curr.next
+
+            level = level.left
 
         return root
+
         
