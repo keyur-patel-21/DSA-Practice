@@ -10,16 +10,14 @@ class Solution(object):
         self.second = None
         self.prev = TreeNode(float("-inf"))
 
-        def helper(root):
-            # base
-            if not root:
-                return
-            # logic
+        stack = []
 
-            # left
-            helper(root.left)
+        while root or stack:
+            while root:
+                stack.append(root)
+                root = root.left
 
-            # current
+            root = stack.pop()
             if self.prev.val > root.val:
                 if not self.first:
                     self.first = self.prev
@@ -28,14 +26,7 @@ class Solution(object):
                     self.second = root
 
             self.prev = root
+            root = root.right
 
-            # right
-            helper(root.right)
-                
-
-
-
-
-        helper(root)
         self.first.val, self.second.val = self.second.val, self.first.val 
         
