@@ -1,39 +1,33 @@
 class Solution(object):
     def canFinish(self, numCourses, prerequisites):
-        
-        indArray = [0] * numCourses
-        adjList = {}
+        preList = defaultdict(list)
+        visited = set()
 
-        for pre in prerequisites:
-            indArray[pre[0]] += 1
-            if pre[1] in adjList:
-                adjList[pre[1]].append(pre[0])
+        for course, requirement in prerequisites:
+            if course in preList:
+                preList[course].append(requirement)
             else:
-                adjList[pre[1]] = [pre[0]]
+                preList[course] = [requirement]
 
-        q = collections.deque() 
-        count = 0
+        def dfs(course):
+            if course in visited:
+                return False
+            
+            if len(preList[course]) == 0:
+                return True
 
-        for i in range(len(indArray)):
-            if indArray[i] == 0:
-                q.append(i)
-                count += 1
-        
-        if count == numCourses:
+            visited.add(course)
+
+            for required_course in preList[course]:
+                if not dfs(required_course): return False
+            
+            visited.remove(course)
+            preList[course] = []
+
             return True
-        if not q:
-            return False
 
-        while q:
-            cur = q.popleft()
-            if cur in adjList:
-                dependents = adjList[cur]
-                for dep in dependents:
-                    indArray[dep] -= 1
-                    if indArray[dep] == 0:
-                        q.append(dep)
-                        count += 1
-                        if count == numCourses:
-                            return True
+        for i in range(numCourses):
+            if not dfs(i): return False
+        return True
+
         
-        return False
