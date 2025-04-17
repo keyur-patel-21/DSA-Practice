@@ -21,8 +21,8 @@ class Solution(object):
             for required_course in preList[course]:
                 if not dfs(required_course): return False
             
-            visited.remove(course)
-            preList[course] = []
+            visited.remove(course) #backTrack
+            preList[course] = []   #BackTrack
 
             return True
 
