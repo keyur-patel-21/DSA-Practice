@@ -1,12 +1,17 @@
 class Solution(object):
     def rob(self, nums):
-        rob1, rob2 = 0, 0 
-
-        for house in nums:
-            temp = max(rob1 + house, rob2)
-            rob1 = rob2
-            rob2 = temp
-
-        return rob2
+        if not nums:
+            return None
+        if len(nums) == 1:
+            return nums[0]
         
+        dp = [0] * len(nums)
+
+        dp[0] = nums[0]
+        dp[1] = max(nums[0], nums[1])
+
+        for i in range(2, len(nums)):
+            dp[i] = max(dp[i-1], (nums[i]+dp[i-2]))
+
+        return dp[-1]
         
