@@ -1,14 +1,21 @@
 class Solution(object):
     def isIsomorphic(self, s, t):
-        mapST, mapTS = {}, {}
+        mapST = {}
+        mapTS = {}
+
+        if len(s) != len(t):
+            return False
 
         for i in range(len(s)):
-            c1, c2 = s[i], t[i]
+            ch1 = s[i]
+            ch2 = t[i]
 
-            if((c1 in mapST and mapST[c1] != c2) or (c2 in mapTS and mapTS[c2] != c1)):
+            if (ch1 in mapST and mapST[ch1] != ch2) or (ch2 in mapTS and mapTS[ch2] != ch1) :
                 return False
 
-            mapST[c1] = c2
-            mapTS[c2] = c1
+            mapST[ch1] = ch2
+            mapTS[ch2] = ch1
         
         return True
+
+        
