@@ -6,10 +6,7 @@ class Solution(object):
         if len(s) != len(t):
             return False
 
-        for i in range(len(s)):
-            ch1 = s[i]
-            ch2 = t[i]
-
+        for ch1, ch2 in zip(s, t):
             if (ch1 in mapST and mapST[ch1] != ch2) or (ch2 in mapTS and mapTS[ch2] != ch1) :
                 return False
 
